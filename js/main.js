@@ -1,15 +1,3 @@
-// const app = Vue.createApp({
-//     data: () => ({
-//         message: 'Hello'
- 
-//     }),
-//     methods: {
-//         clickHandler: function(event) {
-//             this.message = this.message.split('').reverse().join('')
-//         }
-//     }
-// })
-// app.mount('#app')
 const INCREMENT = 1
 const DECREMENT = -1
 
@@ -21,18 +9,23 @@ function updateMeter(counterValue) {
 }
 
 const counterElement = document.querySelector('#counter');
+const levelElement = document.querySelector('#LevelCount')
 
 function updateCounter(amount) {
     let currentValue = parseInt(counterElement.textContent);
+    let levelValue = parseInt(levelElement.textContent);
 
     if (amount > 0 && currentValue < 10) {
         currentValue += amount;
-    }
-    else if (amount < 0 && currentValue > 0 ) {
+    } else if (amount < 0 && currentValue > 0) {
         currentValue += amount;
+    } else if (currentValue === 10) {
+        levelElement.textContent = levelValue + 1;
+        currentValue = 0;
+        window.alert('おめでとうございます！レベルアップしました！');
     }
 
-    counterElement.textContent = currentValue
+    counterElement.textContent = currentValue;
     updateMeter(currentValue)
 }
 
